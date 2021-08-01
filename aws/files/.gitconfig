@@ -1,0 +1,6 @@
+[user]
+        email = dmytro.gorbunov@gmail.com
+        name = Dmytro Gorbunov
+
+[remote "origin"]
+        url = "ssh://git@k8s-sandbox.github.com:gdm/k8s-sandbox.git"

@@ -62,6 +62,8 @@ if [ ! -e  ~/.ssh/${DEPL_KEY}_deploy_key ] ; then
   chmod 0600 ~/.ssh/${DEPL_KEY}_deploy_key
 fi
 
+# copy .git config
+cp files/.gitconfig ~/
 
 # set-up projects
 mkdir -p ~/projects
@@ -70,7 +72,7 @@ REPO_NAME=k8s-sandbox
 if [ ! -d ~/projects/$REPO_NAME ] ; then
   echo "Setting up project $REPO_NAME ..."
   cd ~/projects
-  git clone git@github.com:gdm/${REPO_NAME}.git
+  git clone git@${REPO_NAME}.github.com:gdm/${REPO_NAME}.git
 fi
 
 
