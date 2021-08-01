@@ -1,7 +1,5 @@
 
 # access to private git-repo
-Host k8s-sandbox.github.com
+Host github.com-k8s-sandbox
   Hostname github.com
-  User git
   IdentityFile=~/.ssh/k8s-sandbox_deploy_key
-  IdentitiesOnly yes

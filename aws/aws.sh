@@ -72,7 +72,7 @@ REPO_NAME=k8s-sandbox
 if [ ! -d ~/projects/$REPO_NAME ] ; then
   echo "Setting up project $REPO_NAME ..."
   cd ~/projects
-  git clone git@${REPO_NAME}.github.com:gdm/${REPO_NAME}.git
+  git clone git@github.com-${REPO_NAME}:gdm/${REPO_NAME}.git
 fi
 
 
