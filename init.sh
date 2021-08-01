@@ -4,7 +4,8 @@
 # try to guess where we are by UID/name of the user
 
 if id | grep --silent cloudshell-user ; then
-  echo "We are in AWS CloudShell."
+  echo "We are(most likely) in AWS CloudShell."
+  . aws/aws.sh 
 else
   echo "Not supported CloudShell provider."
   exit 1
