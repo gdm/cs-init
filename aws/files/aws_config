@@ -1,0 +1,5 @@
+[profile default]
+cli_history=enabled
+
+[preview]
+sdb=true

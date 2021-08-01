@@ -1,0 +1,8 @@
+
+if [ -z "$PS1" ]; then
+ # non-interactive shell detected , do nothing
+ ..
+else
+  # setup some aliases
+  alias gp='git pull'
+fi

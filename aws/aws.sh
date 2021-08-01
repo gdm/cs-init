@@ -28,3 +28,23 @@ if [ "$SSH_KEY_FINGERPRINT" != "SHA256:0CVGJt5T68lV+tJVlI04H5A/bARnK+Gu1CpqjFjB3
 fi
 
 echo "SSH key check passed"
+
+# print some aws-cloudshell-specific env variables
+echo "AWS_EXECUTION_ENV=$AWS_EXECUTION_ENV"
+echo "AWS_REGION=$AWS_REGION"
+echo "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION"
+echo "---------------------"
+
+echo "Setup .aws/config"
+
+mkdir -p ~/.aws
+cp files/aws_config ~/.aws/config
+
+if tail -n 3 ~/.bashrc | grep --silent 'bashrc99' ; then
+  echo "Custom bashrc already installed"
+else
+  echo ". ~/.bashrc99" >> ~/.bashrc
+fi
+
+cp files/bashrc99 ~/.bashrc99
+echo "You may need to execute source ~/.bashrc99 in the current shell"
