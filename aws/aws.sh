@@ -1,8 +1,8 @@
 #!/bin/bash
-
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
+# Stop in case of error.
+set -e
 
 cd "$SCRIPT_DIR"
 
@@ -11,6 +11,8 @@ cd "$SCRIPT_DIR"
 uname -a > uname.txt
 dmesg > dmesg.txt
 
+# jq must be present
+jq --version > jq-version.txt
 
 if grep --silent 'amzn2' uname.txt && \
    grep --silent 'Hypervisor detected: KVM' dmesg.txt ; then
@@ -48,3 +50,14 @@ fi
 
 cp files/bashrc99 ~/.bashrc99
 echo "You may need to execute source ~/.bashrc99 in the current shell"
+
+cp files/ssh_config ~/.ssh/config
+chmod 0600 ~/.ssh/config
+
+DEPL_KEY=k8s-sandbox
+if [ ! -e  ~/.ssh/${DEPL_KEY}_deploy_key ] ; then
+  echo "Installing deploy key ${DEPL_KEY}."
+  aws ssm get-parameter --name "/github/deploykeys/${DEPL_KEY}"  --with-decryption | jq '.Parameter.Value' --raw-output \
+    | tr '\\' '\n' > ~/.ssh/${DEPL_KEY}_deploy_key
+  chmod 0600 ~/.ssh/${DEPL_KEY}_deploy_key
+fi

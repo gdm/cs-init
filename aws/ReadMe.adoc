@@ -1,0 +1,17 @@
+
+
+How to work with secrets in AWS:
+[source,bash]
+---
+s=$(tr '\n' '\\' < github-k8s-sandbox-deploy-key)
+aws ssm put-parameter --name "/github/deploykeys/k8s-sandbox"  --value "$s" --type "SecureString"
+
+aws ssm get-parameter --name "/github/deploykeys/k8s-sandbox"  --with-decryption > get.json
+jq '.Parameter.Value' --raw-output get.json  | tr '\\' '\n'
+---
+
+How to print public key from private(ssh)
+[source,bash]
+---
+ssh-keygen -y -f github-k8s-sandbox-deploy-key
+---
