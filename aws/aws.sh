@@ -12,8 +12,8 @@ uname -a > uname.txt
 dmesg > dmesg.txt
 
 
-if grep -s 'amzn2' uname.txt && \
-   grep -s 'Hypervisor detected: KVM' dmesg.txt ; then
+if grep --silent 'amzn2' uname.txt && \
+   grep --silent 'Hypervisor detected: KVM' dmesg.txt ; then
  echo "Additional checks passed."
 else
   echo "Not OK."
@@ -27,3 +27,4 @@ if [ "$SSH_KEY_FINGERPRINT" != "SHA256:0CVGJt5T68lV+tJVlI04H5A/bARnK+Gu1CpqjFjB3
   exit 4
 fi
 
+echo "SSH key check passed"
