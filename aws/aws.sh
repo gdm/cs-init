@@ -8,7 +8,7 @@ cd "$SCRIPT_DIR"
 
 # Some additional checks
 
-uname > uname.txt
+uname -a > uname.txt
 dmesg > dmesg.txt
 
 
